@@ -1,17 +1,53 @@
-var GroceryList = (props) => (
-  <ul>
-    <p>Grocery is open now!</p>
-    <li>{props.item[0]}</li>
-    <li>{props.item[1]}</li>
-  </ul>
-);
+var groceryItems = ['Pen', 'Pineapple', 'hi'];
 
-var items = ['Pen', 'Pineapple'];
-ReactDOM.render(<GroceryList item={items}/>, document.getElementById("app"));
+var GroceryList = (props) => {
+  
+  return (
+    <ul>
+      <h4>Grocery is open now!</h4>
+      {props.items.map(item => <GroceryListItem item={item} />)}
+    </ul>
+  )
+};
 
-// var GroceryList = (props) => (
+class GroceryListItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      done: false
+    };
+  }
+
+  onListItemClick() {
+    this.setState({
+      done: !this.state.done
+    });
+  }
+
+  render() {
+    //Using CSS
+    var style = {
+      textDecoration: this.state.done ? 'line-through' : 'none'
+    };
+    //HTML
+    return (<li style={style} onMouseEnter={this.onListItemClick.bind(this)}>{this.props.item}</li>);
+  }
+}
+
+ReactDOM.render(<GroceryList items={groceryItems}/>, document.getElementById("app"));
+
+
+
+
+
+// var GroceryListItem = (props) => {
+
+//   var onListItemClick = (event) => {
+//     console.log("clicked");
+//   };
+//   return (
 //   <ul>
-//     <li>{props.groceryItems[0]}</li>
-//     <li>{props.groceryItems[1]}</li>
+//     {props.item.map((elem) => <li onClick={onListItemClick}>{elem}</li>)}
 //   </ul>
-// );
+//   );
+// };
