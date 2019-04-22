@@ -1,10 +1,13 @@
 var GroceryList = (props) => (
-  <div>
+  <ul>
     <p>Grocery is open now!</p>
-    
-  </div>
+    <li>{props.item[0]}</li>
+    <li>{props.item[1]}</li>
+  </ul>
 );
-ReactDOM.render(<GroceryList />, document.getElementById("app"));
+
+var items = ['Pen', 'Pineapple'];
+ReactDOM.render(<GroceryList item={items}/>, document.getElementById("app"));
 
 // var GroceryList = (props) => (
 //   <ul>
